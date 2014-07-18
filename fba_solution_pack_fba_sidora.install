@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * Implements hook_enable().  Re-ingests any required objects into Fedora that
+ * are required by the solution pack.
+ */
+function fba_solution_pack_fba_sidora_enable() {
+  
+}
+
+/**
+ * Implementation of hook_disable();
+ */
+function fba_solution_pack_fba_sidora_disable() {
+  
+}
+
+/**
+ * Implementation of hook_install();
+ */
+function fba_solution_pack_fba_sidora_install() {
+  
+}
+

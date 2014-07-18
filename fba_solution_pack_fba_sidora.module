@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Module for Publishing an object in the sidora fba system.
+ *
+ * @author simonfox
+ */
+include_once drupal_get_path('module', 'fba_solution_pack_fba_sidora') . '/publishobject.inc';
+
+//SFOX, FBA additions
+define('MENU_CALLBACK_FBASIDORA_USERS', 'admin/settings/fbasidora/users');
+define('MENU_CALLBACK_FBASIDORA_PUBLISH_COMPLETE', 'fbasidora/publish/complete');
+define('MENU_CALLBACK_FBASIDORA_PUBLISH', 'fbasidora/publish');
+
+/**
+ * Provide definitions for menu callbacks.
+ *
+ * @return array
+ *   Callback definitions
+ */
+function fba_solution_pack_fba_sidora_menu() {
+  $items = array();
+
+  $items[MENU_CALLBACK_FBASIDORA_PUBLISH_COMPLETE] = array(
+    'title' => 'Dataset has been published',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dataset_published'),
+    'access arguments' => array('view fedora collection'), //@TODO Investigate if this permission makes sense.
+    'type' => MENU_CALLBACK,
+  );
+  $items[MENU_CALLBACK_FBASIDORA_PUBLISH] = array(
+    'title' => 'Publish Object',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fba_solution_pack_fba_sidora_form_publish'),
+    'access arguments' => array('view fedora collection'),
+    'type' => MENU_CALLBACK,
+  );
+  $items[MENU_CALLBACK_FBASIDORA_USERS] = array(
+    'title' => 'List all drupal users',
+    'file' => 'includes/fbasidora.inc',
+    'page callback' => 'sidora_list_users',
+    'access arguments' => array('view fedora collection'), //@TODO Investigate if this permission makes sense.
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Valid permissions for this module.
+ *
+ * @return array
+ *   An array of valid permissions for the relationship_reference module
+ */
+function fba_solution_pack_fba_sidora_perm() {
+  //return array('access fba_solution_pack_fba_sidora content');
+}

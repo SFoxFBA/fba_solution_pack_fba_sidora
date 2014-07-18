@@ -1,0 +1,7 @@
+name = FBA Sidora Customisations
+description = FBA Sidora Customisations
+package = Smithsonian
+dependencies[] = sidora
+dependencies[] = islandora_fedora_api
+version = 6.x-1.x-dev
+core = 6.x
