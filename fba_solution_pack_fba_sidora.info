@@ -1,7 +1,13 @@
 name = FBA Sidora Customisations
 description = FBA Sidora Customisations
 package = Smithsonian
+dependencies[] = fba_image_sp
+dependencies[] = fba_large_image_sp
+dependencies[] = fba_library_sp
 dependencies[] = sidora
 dependencies[] = islandora_fedora_api
+dependencies[] = islandora_autocomplete
+dependencies[] = islandora_autocomplete_sparql
 version = 6.x-1.x-dev
 core = 6.x
+
