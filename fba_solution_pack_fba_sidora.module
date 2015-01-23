@@ -57,7 +57,6 @@ function fba_solution_pack_fba_sidora_perm() {
 }
 
 function fba_solution_pack_get_namespace_from_cmodel($content_model_pid) {
-  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
   //SFOX we're not using the si namespace, so have added fba cmodels
   //horribly hard coded, need to extract this from the cmodel ideally
   switch ($content_model_pid) {
@@ -121,4 +120,71 @@ function fba_solution_pack_get_namespace_from_cmodel($content_model_pid) {
       }
   }
   return $pidnamespace;
+}
+
+/**
+ * Gets all the required data.
+ *
+ * @return array
+ *   The definitions of all the required content models and collections to be ingested.
+ */
+function fba_solution_pack_fba_sidora_required_fedora_objects() {
+  module_load_include('inc', 'fedora_repository', 'fedora_repository.solutionpacks');
+  $module_path = drupal_get_path('module', 'fba_solution_pack_fba_sidora');
+
+  return array(
+    'fba_solution_pack_fba_sidora' => array(
+      'module' => 'fba_solution_pack_fba_sidora',
+      'title' => 'FBA Sidora Required Content',
+      'objects' => array(
+        array(
+          'pid' => 'fba:license_cmodel',
+          'label' => 'FBA License Resource',
+          'datastreams' => array(
+            array(
+              'dsid' => 'ISLANDORACM',
+              'datastream_file' => "$module_path/license_cmodel/ISLANDORACM.xml",
+              'dsversion' => 1,
+              'mimetype' => 'text/xml'
+            ),
+            array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/license_cmodel/POLICY.xml",
+              'dsversion' => 1,
+              'mimetype' => 'text/xml'
+            ),
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/license_cmodel/COLLECTION_POLICY.xml",
+              'dsversion' => 1,
+              'mimetype' => 'text/xml'
+            ),
+          )
+        ),
+        //collections
+        array(
+          'pid' => 'fba:license_collection',
+          'label' => 'FBA License Collection',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => variable_get('fedora_repository_pid', 'fba:root'),
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/fba_license_collection_policy.xml",
+            ),
+          ),
+        ),
+        //licenses
+        array(
+          'pid' => 'fbalicense:1',
+          'label' => 'FBA License',
+          'cmodel' => 'fba:license_cmodel',
+          'parent' => 'fba:license_collection',
+          'datastreams' => array(
+          ),
+        ),
+      //End of definitions
+      ),
+    )
+  );
 }

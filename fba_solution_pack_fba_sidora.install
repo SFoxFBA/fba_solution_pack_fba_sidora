@@ -5,20 +5,30 @@
  * are required by the solution pack.
  */
 function fba_solution_pack_fba_sidora_enable() {
-  
-}
+  module_load_include('inc', 'fedora_repository', 'api/fedora_item');
+  module_load_include('inc', 'fedora_repository', 'api/fedora_utils');
 
-/**
- * Implementation of hook_disable();
- */
-function fba_solution_pack_fba_sidora_disable() {
-  
-}
+  if (!fedora_available()) {
+    drupal_set_message(t('Fedora instance is not currently available.  Installation must be verified and completed on the Islandora Configuration page.'));
+  }
+  else {
+    $solution_pack_info = fba_solution_pack_fba_sidora_required_fedora_objects();
+    $batch = array(
+      'title' => t('Installing FBA Sidora Required Objects'),
+//      'file' => drupal_get_path('module', 'fba_solution_pack_fba_sidora') . '/fedora_repository.module',
+      'file' => drupal_get_path('module', 'fba_solution_pack_fba_sidora') . '/batchfunctions.inc',
+      'operations' => array(),
+    );
+    foreach ($solution_pack_info['fba_solution_pack_fba_sidora']['objects'] as $object) {
+      $item = new Fedora_Item($object['pid']);
+      if (!$item->exists()) {
+        $batch['operations'][] = array('fedora_repository_batch_reingest_object', array($object));
+      }
+    }
 
-/**
- * Implementation of hook_install();
- */
-function fba_solution_pack_fba_sidora_install() {
-  
-}
+    $batch['operations'][] = array('addlicensetoobject', array('fbalicense:1'));
 
+    batch_set($batch);
+    batch_process();
+  }
+}
