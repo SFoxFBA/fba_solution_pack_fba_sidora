@@ -85,7 +85,7 @@ function fba_solution_pack_fba_sidora_form_publish(&$form_state = array()) {
       $selectedcollection = $form_state[storage][values][1][publishcollections];
       $selectedpid = $form_state[storage][values][1][pidtopublish];
       $licenceprivacytext .= $selectedpid . ' has been chosen for publishing to ' . $selectedcollection . '.<br/><br/>';
-      $form['licenseprivacy'] = array(
+      $form['licenceprivacy'] = array(
         '#type' => 'markup',
         '#value' => $licenceprivacytext,
       );

@@ -26,7 +26,7 @@ function fba_solution_pack_fba_sidora_enable() {
       }
     }
 
-    $batch['operations'][] = array('addlicensetoobject', array('fbalicense:1'));
+    $batch['operations'][] = array('addlicencetoobject', array('fbalicence:1'));
 
     batch_set($batch);
     batch_process();

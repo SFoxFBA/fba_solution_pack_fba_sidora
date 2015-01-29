@@ -138,24 +138,24 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
       'title' => 'FBA Sidora Required Content',
       'objects' => array(
         array(
-          'pid' => 'fba:license_cmodel',
-          'label' => 'FBA License Resource',
+          'pid' => 'fba:licence_cmodel',
+          'label' => 'FBA Licence Resource',
           'datastreams' => array(
             array(
               'dsid' => 'ISLANDORACM',
-              'datastream_file' => "$module_path/license_cmodel/ISLANDORACM.xml",
+              'datastream_file' => "$module_path/licence_cmodel/ISLANDORACM.xml",
               'dsversion' => 1,
               'mimetype' => 'text/xml'
             ),
             array(
               'dsid' => 'POLICY',
-              'datastream_file' => "$module_path/license_cmodel/POLICY.xml",
+              'datastream_file' => "$module_path/licence_cmodel/POLICY.xml",
               'dsversion' => 1,
               'mimetype' => 'text/xml'
             ),
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/license_cmodel/COLLECTION_POLICY.xml",
+              'datastream_file' => "$module_path/licence_cmodel/COLLECTION_POLICY.xml",
               'dsversion' => 1,
               'mimetype' => 'text/xml'
             ),
@@ -163,23 +163,23 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
         ),
         //collections
         array(
-          'pid' => 'fba:license_collection',
-          'label' => 'FBA License Collection',
+          'pid' => 'fba:licence_collection',
+          'label' => 'FBA Licence Collection',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => variable_get('fedora_repository_pid', 'fba:root'),
           'datastreams' => array(
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/collection_policies/fba_license_collection_policy.xml",
+              'datastream_file' => "$module_path/collection_policies/fba_licence_collection_policy.xml",
             ),
           ),
         ),
-        //licenses
+        //licences
         array(
-          'pid' => 'fbalicense:1',
-          'label' => 'FBA License',
-          'cmodel' => 'fba:license_cmodel',
-          'parent' => 'fba:license_collection',
+          'pid' => 'fbalicence:1',
+          'label' => 'FBA Licence',
+          'cmodel' => 'fba:licence_cmodel',
+          'parent' => 'fba:licence_collection',
           'datastreams' => array(
           ),
         ),
