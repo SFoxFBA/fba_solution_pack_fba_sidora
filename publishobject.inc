@@ -28,23 +28,14 @@ function fba_solution_pack_fba_sidora_form_publish(&$form_state = array()) {
 
       module_load_include('inc', 'sidora', 'includes/utils');
       $currentrels = array();
-      $futurerels = array();
       $repository = tuque_wrapper_get_repository_instance();
       $objecttopublish = $repository->getObject($pid);
+      //SFOX maybe use this? $relationships = $objecttopublish->getParents();
       $relationships = $objecttopublish->relationships->get('info:fedora/fedora-system:def/relations-external#', 'isMemberOfCollection');
       foreach ($relationships as $relationship) {
         $currentrels[$relationship[object][value]] = $relationship[object][value];
       }
-
-      $ri = $repository->ri;
-      $query = 'select ?object where {?object <info:fedora/fedora-system:def/relations-external#isMemberOfCollection> <info:fedora/dtc:collection>}';
-
-      $sparql_query_results = $ri->sparqlQuery($query);
-      foreach ($sparql_query_results as $sparql_query_result) {
-        if (strpos($sparql_query_result[object][value], ':root') === FALSE) { //Bodged code to remove roots for now until MH decides final format
-          $futurerels[$sparql_query_result[object][value]] = $sparql_query_result[object][value];
-        }
-      }
+      $futurerels = $this->getPublishCollectionsList();
       $remainingrels = array_diff($futurerels, $currentrels); //Don't want to try and re-add it to an existing collection
       foreach ($remainingrels as $rel) {
         $relsarray .= '<option value=' . $rel . '>' . $rel . '</option>';

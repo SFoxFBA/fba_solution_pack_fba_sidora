@@ -131,7 +131,7 @@ function fba_solution_pack_get_namespace_from_cmodel($content_model_pid) {
 function fba_solution_pack_fba_sidora_required_fedora_objects() {
   module_load_include('inc', 'fedora_repository', 'fedora_repository.solutionpacks');
   $module_path = drupal_get_path('module', 'fba_solution_pack_fba_sidora');
-
+//SFOX NOTE!!! the object details tab viewing facility MUST be switched off in /admin/settings/fedora_repository
   return array(
     'fba_solution_pack_fba_sidora' => array(
       'module' => 'fba_solution_pack_fba_sidora',
@@ -172,6 +172,12 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
               'dsid' => 'COLLECTION_POLICY',
               'datastream_file' => "$module_path/collection_policies/fba_licence_collection_policy.xml",
             ),
+            array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/licence_cmodel/POLICY.xml",
+              'dsversion' => 1,
+              'mimetype' => 'text/xml'
+            ),
           ),
         ),
         //licences
@@ -181,6 +187,338 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
           'cmodel' => 'fba:licence_cmodel',
           'parent' => 'fba:licence_collection',
           'datastreams' => array(
+            array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/licence_cmodel/POLICY.xml",
+              'dsversion' => 1,
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        //AEDA collections
+        array(
+          'pid' => 'aeda:collection',
+          'label' => 'AEDA Collection',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'islandora:root',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/aeda_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'ast:collection',
+          'label' => 'Atlantic Salmon Trust Collection',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'aeda:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/ast_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'defra:collection',
+          'label' => 'DEFRA Collection',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'aeda:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/defra_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'ea:collection',
+          'label' => 'Environment Agency Collections',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'aeda:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/ea_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'fba:collection',
+          'label' => 'FBA Collections',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'aeda:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/fba_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        //end of level 1 collections
+        //start of defra subcollections
+        array(
+          'pid' => 'dtc:collection',
+          'label' => 'DTC Data',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'defra:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/dtc_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'ghg:collection',
+          'label' => 'GHG Data',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'defra:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/ghg_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'dtcavon:collection',
+          'label' => 'Avon DTC',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'dtc:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/dtcavon_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'dtceden:collection',
+          'label' => 'Eden DTC',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'dtc:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/dtceden_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'dtcwensum:collection',
+          'label' => 'Wensum DTC',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'dtc:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/dtcwensum_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ),
+            array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        //ea collections
+        array(
+          'pid' => 'eachryso:collection',
+          'label' => 'Chrysophytes Database',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'ea:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/eachryso_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'ealit:collection',
+          'label' => 'Grey Literature',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'ea:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/ealit_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        //fba collections
+        array(
+          'pid' => 'fbads:collection',
+          'label' => 'Datasets',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'fba:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/fbads_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'fbaia:collection',
+          'label' => 'FBA Image Archive',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'fba:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/fbaia_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'fbalc:collection',
+          'label' => 'Library Catalogue',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'fba:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/fbalc_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'fbauc:collection',
+          'label' => 'Unpublished Collections',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'fba:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/fbauc_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
           ),
         ),
       //End of definitions
