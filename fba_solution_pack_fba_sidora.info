@@ -6,6 +6,7 @@ dependencies[] = islandora_fedora_api
 dependencies[] = islandora_autocomplete
 dependencies[] = islandora_autocomplete_sparql
 dependencies[] = sidora_publish
+dependencies[] = islandora_doi
 version = 6.x-1.x-dev
 core = 6.x
 
