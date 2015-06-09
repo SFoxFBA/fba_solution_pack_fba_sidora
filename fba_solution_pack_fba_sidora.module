@@ -217,14 +217,14 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
           ),
         ),
         array(
-          'pid' => 'ast:collection',
+          'pid' => 'aest:collection',
           'label' => 'Atlantic Salmon Trust Collection',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => 'aeda:collection',
           'datastreams' => array(
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/collection_policies/ast_collection_policy.xml",
+              'datastream_file' => "$module_path/collection_policies/aest_collection_policy.xml",
             ),
             array(
               'dsid' => 'TN',
@@ -319,8 +319,8 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
           ),
         ),
         array(
-          'pid' => 'ghg:collection',
-          'label' => 'GHG Data',
+          'pid' => 'ghgeno:collection',
+          'label' => 'GHG Nitrous Oxide Data',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => 'defra:collection',
           'datastreams' => array(
@@ -339,14 +339,34 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
           ),
         ),
         array(
-          'pid' => 'dtcavon:collection',
+          'pid' => 'ghgemh:collection',
+          'label' => 'GHG Methane Data',
+          'cmodel' => 'islandora:collectionCModel',
+          'parent' => 'defra:collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'COLLECTION_POLICY',
+              'datastream_file' => "$module_path/collection_policies/ghg_collection_policy.xml",
+            ),
+            array(
+              'dsid' => 'TN',
+              'datastream_file' => "$module_path/collection_policies/TN.png",
+            ), array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/security_policies/anonymous_view_policy.xml",
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'dtceavon:collection',
           'label' => 'Avon DTC',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => 'dtc:collection',
           'datastreams' => array(
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/collection_policies/dtcavon_collection_policy.xml",
+              'datastream_file' => "$module_path/collection_policies/dtceavon_collection_policy.xml",
             ),
             array(
               'dsid' => 'TN',
@@ -359,14 +379,14 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
           ),
         ),
         array(
-          'pid' => 'dtceden:collection',
+          'pid' => 'dtceeden:collection',
           'label' => 'Eden DTC',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => 'dtc:collection',
           'datastreams' => array(
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/collection_policies/dtceden_collection_policy.xml",
+              'datastream_file' => "$module_path/collection_policies/dtceeden_collection_policy.xml",
             ),
             array(
               'dsid' => 'TN',
@@ -379,14 +399,14 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
           ),
         ),
         array(
-          'pid' => 'dtcwensum:collection',
+          'pid' => 'dtcewensum:collection',
           'label' => 'Wensum DTC',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => 'dtc:collection',
           'datastreams' => array(
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/collection_policies/dtcwensum_collection_policy.xml",
+              'datastream_file' => "$module_path/collection_policies/dtcewensum_collection_policy.xml",
             ),
             array(
               'dsid' => 'TN',
@@ -442,14 +462,14 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
         ),
         //fba collections
         array(
-          'pid' => 'fbads:collection',
+          'pid' => 'fbaeds:collection',
           'label' => 'Datasets',
           'cmodel' => 'islandora:collectionCModel',
           'parent' => 'fba:collection',
           'datastreams' => array(
             array(
               'dsid' => 'COLLECTION_POLICY',
-              'datastream_file' => "$module_path/collection_policies/fbads_collection_policy.xml",
+              'datastream_file' => "$module_path/collection_policies/fbaeds_collection_policy.xml",
             ),
             array(
               'dsid' => 'TN',

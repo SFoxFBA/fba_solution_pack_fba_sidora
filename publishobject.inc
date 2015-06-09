@@ -31,7 +31,7 @@ function fba_solution_pack_fba_sidora_form_publish(&$form_state = array()) {
       $repository = tuque_wrapper_get_repository_instance();
       $objecttopublish = $repository->getObject($pid);
       //SFOX maybe use this? $relationships = $objecttopublish->getParents();
-      $relationships = $objecttopublish->relationships->get('info:fedora/fedora-system:def/relations-external#', 'isMemberOfCollection');
+      $relationships = $objecttopublish->relationships->get(FEDORA_RELS_EXT_URI, 'isMemberOfCollection');
       foreach ($relationships as $relationship) {
         $currentrels[$relationship[object][value]] = $relationship[object][value];
       }

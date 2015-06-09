@@ -84,7 +84,7 @@ function sidora_list_users() {
   module_load_include('inc', 'sidora', 'includes/utils');
   $repository = tuque_wrapper_get_repository_instance();
   $userprojectobject = $repository->getObject('fba:user-projects');
-  $userprojrels = $userprojectobject->relationships->get('info:fedora/fedora-system:def/relations-external#', 'hasConcept');
+  $userprojrels = $userprojectobject->relationships->get(FEDORA_RELS_EXT_URI, 'hasConcept');
   foreach ($userprojrels as $userprojrel) {
     $destpid = $userprojrel['object']['value'];
     $allrows[$destpid]['isinuserproj'] = 'Yes';
