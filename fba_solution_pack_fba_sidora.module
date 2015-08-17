@@ -131,7 +131,7 @@ function fba_solution_pack_get_namespace_from_cmodel($content_model_pid) {
 function fba_solution_pack_fba_sidora_required_fedora_objects() {
   module_load_include('inc', 'fedora_repository', 'fedora_repository.solutionpacks');
   $module_path = drupal_get_path('module', 'fba_solution_pack_fba_sidora');
-//SFOX NOTE!!! the object details tab viewing facility MUST be switched off in /admin/settings/fedora_repository
+  //SFOX NOTE!!! the object details tab viewing facility MUST be switched off in /admin/settings/fedora_repository
   return array(
     'fba_solution_pack_fba_sidora' => array(
       'module' => 'fba_solution_pack_fba_sidora',
@@ -183,6 +183,20 @@ function fba_solution_pack_fba_sidora_required_fedora_objects() {
         //licences
         array(
           'pid' => 'fbalicence:1',
+          'label' => 'FBA Licence',
+          'cmodel' => 'fba:licence_cmodel',
+          'parent' => 'fba:licence_collection',
+          'datastreams' => array(
+            array(
+              'dsid' => 'POLICY',
+              'datastream_file' => "$module_path/licence_cmodel/POLICY.xml",
+              'dsversion' => 1,
+              'mimetype' => 'text/xml'
+            ),
+          ),
+        ),
+        array(
+          'pid' => 'fbalicence:2',
           'label' => 'FBA Licence',
           'cmodel' => 'fba:licence_cmodel',
           'parent' => 'fba:licence_collection',
