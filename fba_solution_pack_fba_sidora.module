@@ -122,6 +122,72 @@ function fba_solution_pack_get_namespace_from_cmodel($content_model_pid) {
   return $pidnamespace;
 }
 
+function fba_solution_pack_get_cmodel_from_namespace($pidprefix) {
+  //SFOX we're not using the si namespace, so have added fba cmodels
+  //horribly hard coded, need to extract this from the cmodel ideally
+  switch ($pidprefix) {
+    //Concepts
+    case 'dtcac': {
+        $pidnamespace = 'fba:activity_cmodel';
+        break;
+      }
+    case 'dtcds': {
+        $pidnamespace = 'fba:dataset_cmodel';
+        break;
+      }
+    //Resources
+    case 'dtcmt': {
+        $pidnamespace = 'fba:measurement_cmodel';
+        break;
+      }
+    case 'dtcan': {
+        $pidnamespace = 'fba:analysis_cmodel';
+        break;
+      }
+    case 'dtclr': {
+        $pidnamespace = 'fba:litreview_cmodel';
+        break;
+      }
+    case 'dtcsi': {
+        $pidnamespace = 'fba:simulation_cmodel';
+        break;
+      }
+    case 'dtcsy': {
+        $pidnamespace = 'fba:synthesis_cmodel';
+        break;
+      }
+    //Supplementary File Resources
+    case 'dtcbim': {
+        $pidnamespace = 'fba:supp_basic_image_cmodel';
+        break;
+      }
+    case 'dtclim': {
+        $pidnamespace = 'fba:supp_large_image_cmodel';
+        break;
+      }
+    case 'dtcpdf': {
+        $pidnamespace = 'fba:supp_pdf_cmodel';
+        break;
+      }
+    case 'dtctxt': {
+        $pidnamespace = 'fba:supp_text_cmodel';
+        break;
+      }
+    case 'dtcxl': {
+        $pidnamespace = 'fba:supp_excel_cmodel';
+        break;
+      }
+    case 'dtcwd': {
+        $pidnamespace = 'fba:supp_word_cmodel';
+        break;
+      }
+    default: {
+        $pidnamespace = NULL; //
+      }
+  }
+  return $pidnamespace;
+}
+
 /**
  * Gets all the required data.
  *
